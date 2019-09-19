@@ -17,6 +17,7 @@ import (
 )
 
 func main() {
+
 	//设置身份证号
 	idCardParser.SetIdCard("111111111111111")
 
