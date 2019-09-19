@@ -21,9 +21,13 @@ func SetIdCard(idCard string) error {
 	if idCard == "" {
 		return errors.New("param idCard must not be empty")
 	}
+	idCardLenth = len(idCard)
+
+	if idCardLenth != 18 && idCardLenth != 15 {
+		return errors.New("param idCard error")
+	}
 
 	idCardNum = idCard
-	idCardLenth = len(idCard)
 	return nil
 }
 
