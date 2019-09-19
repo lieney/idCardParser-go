@@ -9,14 +9,13 @@ import (
 )
 
 var (
-	idCardNum string
+	idCardNum   string
 	idCardLenth int
 )
-var salt = [...]int {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2}
+var salt = [...]int{7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2}
 var checksum = [...]string{"1", "0", "X", "9", "8", "7", "6", "5", "4", "3", "2"}
 var genderMale int = 1
 var genderFemale int = 0
-
 
 func SetIdCard(idCard string) error {
 	if idCard == "" {
@@ -38,18 +37,18 @@ func IsValidate(idCard string) bool {
 	return false
 }
 
-func getGender() (gender int) {
+func GetGender() (gender int) {
 
 	if idCardLenth == 18 {
 		temp := fmt.Sprintf("%c", idCardNum[16])
 		gender, _ = strconv.Atoi(temp)
-	}else {
+	} else {
 		temp := fmt.Sprintf("%c", idCardNum[14])
 		gender, _ = strconv.Atoi(temp)
 	}
-	if gender % 2 == 0 {
+	if gender%2 == 0 {
 		gender = genderFemale
-	}else {
+	} else {
 		gender = genderMale
 	}
 	return
@@ -60,7 +59,7 @@ func checkFormat() bool {
 	if err != nil {
 		return false
 	}
-	return  res
+	return res
 }
 
 func checkBirthday() bool {
@@ -70,7 +69,7 @@ func checkBirthday() bool {
 	if err != nil {
 		return false
 	}
-	return  res
+	return res
 }
 
 func checkLastCode() bool {
@@ -93,11 +92,10 @@ func checkLastCode() bool {
 func GetBirthday() (birthday string) {
 	if idCardLenth == 18 {
 		birthday = idCardNum[6:14]
-	}else {
-		for i := 0; i < 8; i++{
+	} else {
+		for i := 0; i < 8; i++ {
 			birthday = strings.Join([]string{"19", idCardNum[6:12]}, "")
 		}
 	}
 	return
 }
-
